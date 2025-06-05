@@ -1,0 +1,98 @@
+// src/components/GroupDisplay/GroupDisplay.scss
+.group-setup-form {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  margin: 20px auto;
+  text-align: center;
+
+  h2 {
+    color: #27ae60; // Greenish for groups
+    margin-bottom: 15px;
+  }
+  p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+  }
+  .input-field-container {
+    width: 100%;
+    max-width: 100%; // Full width within the form
+    margin-bottom: 20px;
+  }
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+
+    @media (max-width: 400px) {
+      flex-direction: column-reverse;
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.groups-container {
+  width: 100%;
+  max-width: 550px;
+  margin: 20px auto;
+
+  h2 {
+    text-align: center;
+    color: #27ae60;
+    margin-bottom: 25px;
+  }
+
+  .group-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #27ae60; // Accent color
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+    h3 {
+      color: #2c3e50;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+
+      li {
+        padding: 6px 0;
+        font-size: 1rem;
+        color: #34495e;
+        border-bottom: 1px dashed #f0f0f0;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .groups-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around; // Space out action buttons
+    gap: 15px;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}

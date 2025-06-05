@@ -1,0 +1,55 @@
+// src/components/ParticipantInputForm/ParticipantInputForm.scss
+.participant-input-form {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px; // Control max width for larger screens
+  margin: 20px auto; // Center it
+
+  .form-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center children like inputs and buttons
+
+    h2 {
+      color: #3498db;
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+    }
+
+    // Ensure Input component takes available width within this form
+    .input-field-container {
+      width: 100%; // Override default max-width of Input if needed for this form
+      max-width: 100%; // Allow it to fill the form step's width
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: space-between; // Puts 'Back' to left, 'Start Wheel' to right
+    width: 100%;
+    margin-top: 20px;
+
+    .btn {
+      min-width: 120px; // Ensure decent tap targets
+    }
+
+    // On smaller screens, stack action buttons or make them full width for easier tapping
+    @media (max-width: 400px) {
+      flex-direction: column-reverse; // Puts primary action (Start Wheel) on top when stacked
+      gap: 10px;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  // Styling for full-width buttons if used (e.g., 'Next' button in step 1)
+  .btn--full-width {
+    width: 100%;
+    margin-top: 10px;
+  }
+}

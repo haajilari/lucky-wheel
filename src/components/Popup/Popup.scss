@@ -1,0 +1,91 @@
+// src/components/Popup/Popup.scss
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; // Ensure it's on top
+  padding: 15px; // Padding for smaller screens so content doesn't touch edges
+}
+
+.popup-content {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 450px; // Max width of the popup
+  text-align: center;
+  position: relative; // For potential close button positioning later
+
+  .popup-title {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+
+  .popup-body {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #34495e;
+    line-height: 1.6;
+  }
+
+  .popup-footer {
+    display: flex;
+    justify-content: flex-end; // Align buttons to the right by default
+    gap: 10px; // Space between buttons
+
+    // On smaller screens, stack buttons or make them full width
+    @media (max-width: 480px) {
+      flex-direction: column;
+
+      .popup-footer-btn {
+        width: 100%;
+        margin-bottom: 10px; // Add margin for stacked buttons
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .winner-announcement {
+    position: relative; // To contain absolutely positioned fireworks
+    padding-bottom: 20px; // Space for text below name if any
+
+    .winner-name {
+      font-size: 2rem; // Larger font for the winner
+      font-weight: bold;
+      color: #27ae60; // A celebratory color
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 6px;
+      display: inline-block; // So background fits text
+      position: relative; // To ensure name is above fireworks if they overlap
+      z-index: 1;
+    }
+
+    .fireworks-container {
+      position: absolute;
+      // Position it around the name or center of the popup body.
+      // This positions the *origin* of the particles.
+      // Particles then fly outwards from this origin (0,0 within this container).
+      top: 50%; // Center vertically relative to winner-announcement
+      left: 50%; // Center horizontally
+      width: 1px; // Minimal size, just an origin point
+      height: 1px;
+      // transform: translate(-50%, -50%); // If you want to center the explosion point precisely on name
+      // For now, let's have particles originate from the center of where this div is placed.
+      // The FireworkParticle component itself uses absolute positioning from its parent.
+      // The x,y in FireworkParticle will be 0,0 if this container is the reference.
+    }
+  }
+}

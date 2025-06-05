@@ -1,0 +1,67 @@
+// src/components/Button/Button.scss
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  min-width: 120px; // Ensure buttons have a decent minimum tap target size
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  &--primary {
+    background-color: #3498db; // Blue
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #2980b9;
+    }
+    &:disabled {
+      background-color: #a9cce3;
+    }
+  }
+
+  &--secondary {
+    background-color: #ecf0f1; // Light Gray
+    color: #2c3e50; // Dark text
+    border: 1px solid #bdc3c7; // Light border
+
+    &:hover:not(:disabled) {
+      background-color: #dadedf;
+    }
+    &:disabled {
+      background-color: #f0f1f2;
+      color: #95a5a6;
+    }
+  }
+
+  &--danger {
+    background-color: #e74c3c; // Red
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #c0392b;
+    }
+    &:disabled {
+      background-color: #f5b7b1;
+    }
+  }
+
+  // Example for full width button on mobile
+  &.btn--full-width {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+}

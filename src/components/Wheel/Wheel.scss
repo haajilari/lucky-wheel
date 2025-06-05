@@ -1,0 +1,124 @@
+// src/components/Wheel/Wheel.scss
+.wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+
+  h2 {
+    color: #e67e22; // Orange for wheel
+    margin-bottom: 30px;
+  }
+
+  &.empty-wheel {
+    text-align: center;
+    p {
+      margin-bottom: 20px;
+      font-size: 1.1rem;
+      color: #7f8c8d;
+    }
+  }
+}
+
+.wheel-assembly {
+  position: relative;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wheel-pointer {
+  position: absolute;
+  top: -25px; // Position above the wheel
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem; // Larger pointer
+  color: #c0392b; // Red pointer
+  z-index: 10;
+  // Simple triangle using text character, could be an SVG or styled div
+}
+
+.wheel {
+  width: 300px; // Size of the wheel
+  height: 300px;
+  border-radius: 50%;
+  border: 5px solid #34495e; // Dark border for the wheel
+  position: relative;
+  overflow: hidden; // Crucial for the wedge segment trick
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2), inset 0 0 15px rgba(0, 0, 0, 0.1);
+
+  // Mobile-first: adjust size for smaller screens if needed
+  @media (max-width: 360px) {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+.wheel-segment {
+  position: absolute;
+  width: 50%; // Half of the wheel's width
+  height: 50%; // Half of the wheel's height
+  // background-color: #3498db; // Default color, will be overridden by JS
+  transform-origin: 100% 100%; // Set transform origin to the bottom-right corner (center of the wheel)
+  // clip-path: polygon(0 0, 100% 0, 100% 100%, 0 0); // This creates a triangular wedge
+  // The skew method is more common for this CSS-only approach:
+  // transform: rotate(VAR_ANGLE_FROM_JS) skewY(VAR_SKEW_FROM_JS);
+  // For example, if 4 segments, angle is 90, skew is 0. If 8 segments, angle is 45, skew is 45.
+
+  // The text inside the segment needs to be counter-transformed
+  .segment-text {
+    position: absolute; // Needed for complex transforms
+    // The transform values here are critical and depend on the segment's own transform
+    // This is where it gets very complex to perfectly center and orient text on skewed CSS wedges.
+    // It's often easier to use SVG or canvas for robust text-on-a-wedge.
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem; // Adjust based on segment size
+    width: 100%; // Take width of the segment for text centering attempts
+    height: 100%; // Take height
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    box-sizing: border-box; // Include padding in width/height
+
+    .participant-name {
+      // Further refinement for text display
+      // Color contrast can be an issue; consider adding text shadow or outline
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    }
+
+    // Adjust font size for very small segments
+    @media (max-width: 360px) {
+      font-size: 0.7rem;
+      .participant-name {
+        max-width: 50px !important; // Stricter max-width on small screens
+      }
+    }
+  }
+}
+
+.wheel-controls {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 400px;
+  margin-top: 20px;
+
+  .btn {
+    min-width: 130px;
+  }
+
+  @media (max-width: 400px) {
+    flex-direction: column;
+    gap: 10px;
+    .btn {
+      width: 100%;
+    }
+  }
+}
